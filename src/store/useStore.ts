@@ -28,7 +28,7 @@ interface AppState {
   setPainLevel: (pain: number | null) => void;
 }
 
-export const useStore = create<AppState>((set) => ({
+export const useStore = create<AppState>((set, get) => ({
   profile: {
     age: 75,
     vcm: 1.2, // m/s
@@ -59,15 +59,36 @@ export const useStore = create<AppState>((set) => ({
     painLevel: null 
   }),
 
-  finishSession: () => set({
-    isWalking: false,
-    isResting: false,
-    walkingTime: 0,
-    restingTime: 0,
-    steps: 0,
-    distance: 0,
-    painLevel: null,
-  }),
+  finishSession: async () => {
+    const state = get();
+    try {
+      if (state.walkingTime > 0) {
+        await fetch('http://localhost:3001/api/sessions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            walkingTime: state.walkingTime,
+            restingTime: state.restingTime,
+            steps: state.steps,
+            distance: state.distance,
+            painLevel: state.painLevel,
+          }),
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    
+    set({
+      isWalking: false,
+      isResting: false,
+      walkingTime: 0,
+      restingTime: 0,
+      steps: 0,
+      distance: 0,
+      painLevel: null,
+    });
+  },
 
   tick: () => set((state) => {
     if (state.isWalking) {

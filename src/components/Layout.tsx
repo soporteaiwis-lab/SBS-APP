@@ -4,8 +4,8 @@ import { cn } from '../lib/utils';
 
 export default function Layout() {
   return (
-    <div className="flex flex-col h-screen bg-neutral-50 text-neutral-900 font-sans">
-      <main className="flex-1 overflow-y-auto pb-20">
+    <div className="flex flex-col h-[100dvh] bg-neutral-50 text-neutral-900 font-sans">
+      <main className="flex-1 overflow-y-auto pb-28 pt-4">
         <Outlet />
       </main>
       

@@ -14,6 +14,7 @@ export default function Dashboard() {
     startWalking, 
     stopWalkingForPain, 
     resumeWalking,
+    finishSession,
     tick,
     profile
   } = useStore();
@@ -51,8 +52,8 @@ export default function Dashboard() {
   const progressDistance = Math.min((distance / profile.targetDistance) * 100, 100);
 
   return (
-    <div className="flex flex-col h-full max-w-md mx-auto p-6 space-y-8">
-      <header className="pt-8 pb-4">
+    <div className="flex flex-col min-h-full max-w-md mx-auto px-6 space-y-8">
+      <header className="pt-2 pb-2">
         <h1 className="text-4xl font-bold tracking-tight text-neutral-900">Mi Caminata</h1>
         <p className="text-lg text-neutral-500 mt-2">Objetivo diario: 60 minutos</p>
       </header>
@@ -122,6 +123,12 @@ export default function Dashboard() {
               <RefreshCw className="w-12 h-12 mb-3" />
               <span className="text-2xl font-bold tracking-wide">REANUDAR</span>
               <span className="text-sm opacity-80 mt-1">(El dolor pasó)</span>
+            </button>
+            <button 
+              onClick={finishSession}
+              className="mt-4 px-8 py-4 rounded-2xl font-bold text-neutral-600 bg-neutral-100 active:bg-neutral-200 transition-colors w-full"
+            >
+              FINALIZAR SESIÓN
             </button>
           </div>
         )}

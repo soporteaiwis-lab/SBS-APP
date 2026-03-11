@@ -2,8 +2,8 @@ import { HeartPulse, Activity, Info, Clock, ActivitySquare, Droplet, Smile } fro
 
 export default function Health() {
   return (
-    <div className="flex flex-col h-full max-w-md mx-auto p-6 space-y-8">
-      <header className="pt-8 pb-4">
+    <div className="flex flex-col min-h-[100%] max-w-md mx-auto px-6 space-y-8">
+      <header className="pt-2 pb-2">
         <h1 className="text-4xl font-bold tracking-tight text-neutral-900">Salud</h1>
         <p className="text-lg text-neutral-500 mt-2">Monitoreo y educación</p>
       </header>
